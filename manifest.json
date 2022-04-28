@@ -1,6 +1,6 @@
 {
-  "short_name": "My Transportation App",
-  "name": "Transportation App (Taipei Ubike 1.0)",
+  "short_name": "Rapid test kit map for Taiwan",
+  "name": "covid-19 rapid test kit map",
   "icons": [
     {
       "src": "favicon.ico",
