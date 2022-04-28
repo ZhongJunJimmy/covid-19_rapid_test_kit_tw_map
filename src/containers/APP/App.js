@@ -155,7 +155,6 @@ class App extends Component {
             }
           }
         }
-      }
 
 
       if(stationInfo[0].linearDistance >= 0){
@@ -215,7 +214,7 @@ class App extends Component {
             stationsInfo:nearStation
           });
         }
-
+      }
         
       }
       
