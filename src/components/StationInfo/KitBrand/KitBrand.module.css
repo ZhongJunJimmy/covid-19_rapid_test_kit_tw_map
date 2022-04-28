@@ -1,0 +1,11 @@
+.KitCountWrapper {
+    color: #333333;
+    font-size: 1rem;
+    letter-spacing: +1px;
+    text-align: center;
+}
+
+.icon {
+    position: relative;
+    top: 5px;
+}
