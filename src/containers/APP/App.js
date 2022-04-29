@@ -210,7 +210,7 @@ class App extends Component {
           }
         
         }
-        if(nearStation[0].distance > 0 && nearStation[1].distance > 0 && nearStation[2].distance > 0){
+        if(nearStation[0].distance >= 0 && nearStation[1].distance >= 0 && nearStation[2].distance >= 0){
           this.setState({
             stationsInfo:nearStation
           });
