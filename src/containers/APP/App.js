@@ -86,7 +86,7 @@ class App extends Component {
           //console.log(data);
 
           var array = data.split("\r");
-          console.log(array[1].split(","));
+          //console.log(array[1].split(","));
 
           /*['醫事機構代碼', '醫事機構名稱', '醫事機構地址', 
           '經度', '緯度', '醫事機構電話', '廠牌項目', 
@@ -210,7 +210,7 @@ class App extends Component {
           }
         
         }
-        if(nearStation[0].distance >= 0 && nearStation[1].distance >= 0 && nearStation[2].distance >= 0){
+        if(nearStation[0].distance > 0 && nearStation[1].distance > 0 && nearStation[2].distance > 0){
           this.setState({
             stationsInfo:nearStation
           });
