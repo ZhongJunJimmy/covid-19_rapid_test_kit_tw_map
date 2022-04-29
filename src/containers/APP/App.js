@@ -34,6 +34,7 @@ navigator.geolocation.getCurrentPosition(success, error, options);
 
 class App extends Component {
 
+
   constructor(props) {
     super(props);
     this.state = {
@@ -85,7 +86,7 @@ class App extends Component {
           //console.log(data);
 
           var array = data.split("\r");
-          //console.log(array[1].split(","));
+          console.log(array[1].split(","));
 
           /*['醫事機構代碼', '醫事機構名稱', '醫事機構地址', 
           '經度', '緯度', '醫事機構電話', '廠牌項目', 
@@ -256,7 +257,9 @@ class App extends Component {
     return (
       <div className={classes.AppWrapper}>
         <Header 
-        color={assetMapping._colorDesc[(this.state.geolocationState)? "green":"gray"]} />
+        color={assetMapping._colorDesc[(this.state.geolocationState)? "green":"gray"]} 
+        onClickHandler={this.getStation}/>
+        
         <CardList data={this.state}></CardList>
         <Footer />
       </div>
