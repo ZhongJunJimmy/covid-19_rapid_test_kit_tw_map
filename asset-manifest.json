@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/covid-19_rapid_test_kit_tw_map/static/css/main.b9f357ef.css",
-    "main.js": "/covid-19_rapid_test_kit_tw_map/static/js/main.601deb76.js",
+    "main.js": "/covid-19_rapid_test_kit_tw_map/static/js/main.74a7abe5.js",
     "static/js/787.3eaf6ee7.chunk.js": "/covid-19_rapid_test_kit_tw_map/static/js/787.3eaf6ee7.chunk.js",
     "index.html": "/covid-19_rapid_test_kit_tw_map/index.html",
     "main.b9f357ef.css.map": "/covid-19_rapid_test_kit_tw_map/static/css/main.b9f357ef.css.map",
-    "main.601deb76.js.map": "/covid-19_rapid_test_kit_tw_map/static/js/main.601deb76.js.map",
+    "main.74a7abe5.js.map": "/covid-19_rapid_test_kit_tw_map/static/js/main.74a7abe5.js.map",
     "787.3eaf6ee7.chunk.js.map": "/covid-19_rapid_test_kit_tw_map/static/js/787.3eaf6ee7.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.b9f357ef.css",
-    "static/js/main.601deb76.js"
+    "static/js/main.74a7abe5.js"
   ]
 }
