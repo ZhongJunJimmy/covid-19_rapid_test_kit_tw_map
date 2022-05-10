@@ -5,7 +5,9 @@ import {BiTestTube} from "react-icons/bi";
 const kitCount = (props) => {
     return(
         <div className={classes.KitCountWrapper}>
-            <BiTestTube />{props.data}
+            <BiTestTube
+            onClick={()=>alert('廠牌：' + props.brand)}/>{props.data}
+
         </div>
     );
 }

@@ -41,11 +41,11 @@ class App extends Component {
       geolocationState: false,
       location:{},
       stationsInfo:[
-        
+
       ]
     };
   }
-  
+
 
   distance = (lat1, lon1, lat2, lon2, unit) => {
     if ((lat1 == lat2) && (lon1 == lon2)) {
@@ -88,26 +88,27 @@ class App extends Component {
           var array = data.split("\r");
           //console.log(array[1].split(","));
 
-          /*['醫事機構代碼', '醫事機構名稱', '醫事機構地址', 
-          '經度', '緯度', '醫事機構電話', '廠牌項目', 
+          /*['醫事機構代碼', '醫事機構名稱', '醫事機構地址',
+          '經度', '緯度', '醫事機構電話', '廠牌項目',
           '快篩試劑截至目前結餘存貨數量', '來源資料時間', '備註']*/
 
           for(let i = 1; i<array.length; i++){
             let unitInfo = array[i].split(",");
             let linearDist = this.distance(this.state.location.latitude, this.state.location.longitude, unitInfo[4], unitInfo[3], "K");
-            
+
 
 
             stationInfo.push({
               key: i,
               name: unitInfo[1],
               address: unitInfo[2],
-              latitude: unitInfo[4],
               longitude: unitInfo[3],
+              latitude: unitInfo[4],
               phone: unitInfo[5],
               kitBrand: unitInfo[6],
               kitCnt: unitInfo[7],
               updateDate: unitInfo[8],
+              description: unitInfo[9],
               linearDistance: linearDist,
               distance:0
 
@@ -115,18 +116,18 @@ class App extends Component {
           }
 
           //console.log(`data: ${JSON.stringify(stationInfo, undefined, 4)}`);
-         
+
         })
         .catch(err => {
           console.log(`err: ${err}`);
         });
   }
-  
+
   getLocation = (offset) => {
-    
+
     //console.log(new Date().toLocaleTimeString());
     this.state.geolocationState=true;
-    
+
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
         //console.log(position);
@@ -167,7 +168,7 @@ class App extends Component {
             nearStationIdx ++;
           }
           if(nearStationIdx == 5) break;
-          
+
         }
         if(nearStation[0].distance ==0 ||offset % 10 == 0){
           var origin = new window.google.maps.LatLng(latitude, longitude);
@@ -191,14 +192,14 @@ class App extends Component {
             nearStation[2].distance = res.rows[0].elements[2].distance.value;
             nearStation[3].distance = res.rows[0].elements[3].distance.value;
             nearStation[4].distance = res.rows[0].elements[4].distance.value;
-            
+
             stationInfo[0].distance = res.rows[0].elements[0].distance.value;
             stationInfo[1].distance = res.rows[0].elements[1].distance.value;
             stationInfo[2].distance = res.rows[0].elements[2].distance.value;
             stationInfo[3].distance = res.rows[0].elements[3].distance.value;
             stationInfo[4].distance = res.rows[0].elements[4].distance.value;
           });
-          
+
           for(let j = 0; j < nearStation.length; j++){
             for(let k = j+1; k < nearStation.length; k++){
               if(nearStation[k].distance < nearStation[j].distance){
@@ -208,7 +209,7 @@ class App extends Component {
               }
             }
           }
-        
+
         }
         if(nearStation[0].distance >= 0 && nearStation[1].distance >= 0 && nearStation[2].distance >= 0){
           this.setState({
@@ -216,15 +217,15 @@ class App extends Component {
           });
         }
       }
-        
+
       }
-      
+
       //console.log(`${this.state.location.latitude},${this.state.location.longitude}`)
       //this.getStation();
     }
   }
 
-  
+
   getLocationInfoAndStationInfo = (offset) =>{
     processLive="";
     this.getLocation(offset);
@@ -251,15 +252,15 @@ class App extends Component {
     {
       //console.log(this.state.geolocationState);
       (this.state.geolocationState)?console.log(`geolocationState: ${this.state.geolocationState}`):this.getLocationInfoAndStationInfo(getLocationIntervalTime)
-      
+
     }
-    
+
     return (
       <div className={classes.AppWrapper}>
-        <Header 
-        color={assetMapping._colorDesc[(this.state.geolocationState)? "green":"gray"]} 
+        <Header
+        color={assetMapping._colorDesc[(this.state.geolocationState)? "green":"gray"]}
         onClickHandler={this.getStation}/>
-        
+
         <CardList data={this.state}></CardList>
         <Footer />
       </div>

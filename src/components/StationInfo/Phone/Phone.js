@@ -3,9 +3,8 @@ import classes from './Phone.module.css';
 
 const phone = (props) => {
     return(
-        <div classPhone={classes.PhoneWrapper}>
+        <div className={classes.PhoneWrapper}>
             {props.data}
-            
         </div>
     );
 }
