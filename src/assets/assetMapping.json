@@ -1,5 +1,5 @@
 
-   
+
 {
     "_colorDesc": {
         "lilac": "#C0B3BC",
@@ -7,24 +7,6 @@
         "blue": "#18B2D8",
         "yellow": "#FCC418",
         "grey": "#D9DEDF",
-        "green": "#008000"
-    },
-    "colors": {
-        "default": "#C0B3BC",
-        "error": "#EF9A9A",
-        "Rain": "#18B2D8",
-        "Clear": "#FCC418",
-        "Thunderstorm": "#D9DEDF",
-        "Snow": "#D9DEDF",
-        "Drizzle": "#18B2D8",
-        "Clouds": "#FCC418"
-    },
-    "icons": {
-        "Rain": "Rain.svg",
-        "Drizzle": "Drizzle.svg",
-        "Clouds": "Clouds.svg",
-        "Clear": "Clear.svg",
-        "Snow": "Snow.svg",
-        "Thunderstorm": "Thunderstorm.svg"
+        "green": "#28C8C8"
     }
 }
