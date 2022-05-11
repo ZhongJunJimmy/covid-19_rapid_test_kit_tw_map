@@ -1,7 +1,8 @@
 import React from 'react';
 import classes from './Distance.module.css';
 
-const distance = (props) => {
+const Distance = (props) => {
+
     return(
         <div className={classes.DistanceWrapper}>
             {(props.data > 1000)?`${(Math.floor(props.data)/1000).toFixed(2)}km`:`${(Math.floor(props.data)).toFixed(2)}m`}
@@ -9,4 +10,4 @@ const distance = (props) => {
     );
 }
 
-export default distance;
+export default Distance;

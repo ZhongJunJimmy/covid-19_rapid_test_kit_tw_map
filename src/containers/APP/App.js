@@ -5,6 +5,7 @@ import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import CardList from '../../elements/CardList/CardList';
 
+
 var latitude = "";
 var longitude = "";
 var getLocationIntervalTime = 60;
@@ -30,7 +31,6 @@ function error(err) {
 };
 
 navigator.geolocation.getCurrentPosition(success, error, options);
-
 
 class App extends Component {
 
@@ -260,7 +260,6 @@ class App extends Component {
         <Header
         color={assetMapping._colorDesc[(this.state.geolocationState)? "green":"gray"]}
         onClickHandler={this.getStation}/>
-
         <CardList data={this.state}></CardList>
         <Footer />
       </div>

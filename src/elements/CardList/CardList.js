@@ -3,7 +3,9 @@ import classes from "./CardList.module.css"
 import Card from "../Card/Card"
 import StationInfo from '../../components/StationInfo/StationInfo';
 
-const cardList = props => {
+const CardList = props => {
+
+
 
     return (
         <div className={classes.cardListWrapper}>
@@ -20,4 +22,4 @@ const cardList = props => {
       )
 
 }
-export default cardList
+export default CardList
