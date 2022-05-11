@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import classes from './App.module.css';
 import assetMapping from '../../assets/assetMapping.json';
+import { v4 as uuidv4 } from "uuid";
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import CardList from '../../elements/CardList/CardList';
@@ -99,7 +100,7 @@ class App extends Component {
 
 
             stationInfo.push({
-              key: i,
+              key: uuidv4(),
               name: unitInfo[1],
               address: unitInfo[2],
               longitude: unitInfo[3],
@@ -244,14 +245,16 @@ class App extends Component {
     processLive = setTimeout(this.getLocationInfoAndStationInfo, 1000, offset);
   }
 
-
+  componentDidMount(){
+    this.getLocationInfoAndStationInfo(getLocationIntervalTime)
+  }
 
 
 
   render() {
     {
       //console.log(this.state.geolocationState);
-      (this.state.geolocationState)?console.log(`geolocationState: ${this.state.geolocationState}`):this.getLocationInfoAndStationInfo(getLocationIntervalTime)
+      //(this.state.geolocationState)?console.log(`geolocationState: ${this.state.geolocationState}`):this.getLocationInfoAndStationInfo(getLocationIntervalTime)
 
     }
 
