@@ -46,8 +46,8 @@ class App extends Component {
       ]
     };
   }
-
-
+  
+  // calculate linear distance 
   distance = (lat1, lon1, lat2, lon2, unit) => {
     if ((lat1 == lat2) && (lon1 == lon2)) {
         return 0;
@@ -70,7 +70,7 @@ class App extends Component {
     }
 }
 
-
+  //取得快篩試劑販售店家資訊
   getStation = () =>{
     stationInfo = [];
     const URL = 'https://data.nhi.gov.tw/resource/Nhi_Fst/Fstdata.csv';
@@ -89,16 +89,15 @@ class App extends Component {
           var array = data.split("\r");
           //console.log(array[1].split(","));
 
-          /*['醫事機構代碼', '醫事機構名稱', '醫事機構地址',
+          /* receive data colume from CSV file:
+          ['醫事機構代碼', '醫事機構名稱', '醫事機構地址',
           '經度', '緯度', '醫事機構電話', '廠牌項目',
           '快篩試劑截至目前結餘存貨數量', '來源資料時間', '備註']*/
 
           for(let i = 1; i<array.length; i++){
             let unitInfo = array[i].split(",");
             let linearDist = this.distance(this.state.location.latitude, this.state.location.longitude, unitInfo[4], unitInfo[3], "K");
-
-
-
+            
             stationInfo.push({
               key: uuidv4(),
               name: unitInfo[1],
@@ -112,7 +111,6 @@ class App extends Component {
               description: unitInfo[9],
               linearDistance: linearDist,
               distance:0
-
             })
           }
 
@@ -124,6 +122,7 @@ class App extends Component {
         });
   }
 
+  // get location data by browser and call google map api to get distance
   getLocation = (offset) => {
 
     //console.log(new Date().toLocaleTimeString());
@@ -148,7 +147,7 @@ class App extends Component {
       });
 
       if(stationInfo.length > 0){
-
+        // sort store data by linear distance
         for(let j = 0; j < stationInfo.length; j++){
           for(let k = j+1; k < stationInfo.length; k++){
             if(stationInfo[k].linearDistance < stationInfo[j].linearDistance){
@@ -163,8 +162,9 @@ class App extends Component {
       if(stationInfo[0].linearDistance >= 0){
         var nearStation = [{},{},{}];
         let nearStationIdx = 0;
+        // just show the store info that the kit count > 0
         for(let j = 0; j < stationInfo.length; j++){
-          if(stationInfo[j].kitCnt >0){
+          if(stationInfo[j].kitCnt > 0){
             nearStation[nearStationIdx] = stationInfo[j];
             nearStationIdx ++;
           }
@@ -173,7 +173,6 @@ class App extends Component {
         }
         if(nearStation[0].distance ==0 ||offset % 10 == 0){
           var origin = new window.google.maps.LatLng(latitude, longitude);
-
           var destinationA = new window.google.maps.LatLng(nearStation[0].latitude, nearStation[0].longitude);
           var destinationB = new window.google.maps.LatLng(nearStation[1].latitude, nearStation[1].longitude);
           var destinationC = new window.google.maps.LatLng(nearStation[2].latitude, nearStation[2].longitude);
@@ -181,6 +180,7 @@ class App extends Component {
           var destinationE = new window.google.maps.LatLng(nearStation[4].latitude, nearStation[4].longitude);
 
           var service = new window.google.maps.DistanceMatrixService();
+          // call google map api to get distance
           service.getDistanceMatrix(
           {
             origins: [origin, origin, origin, origin, origin ],
@@ -201,6 +201,7 @@ class App extends Component {
             stationInfo[4].distance = res.rows[0].elements[4].distance.value;
           });
 
+          //sort store data by google map api distance
           for(let j = 0; j < nearStation.length; j++){
             for(let k = j+1; k < nearStation.length; k++){
               if(nearStation[k].distance < nearStation[j].distance){
@@ -226,7 +227,7 @@ class App extends Component {
     }
   }
 
-
+  // check the stats per seconds
   getLocationInfoAndStationInfo = (offset) =>{
     processLive="";
     this.getLocation(offset);
